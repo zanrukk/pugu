@@ -1,0 +1,14 @@
+<div class="div">
+  <ion-checkbox
+    color="dark"
+    style="width: 2rem; height: 2rem"
+    [(ngModel)]="value"
+    (ngModelChange)="onClickCheckBox()"
+  ></ion-checkbox>
+  <ion-input
+    class="input"
+    [(ngModel)]="content"
+    (ngModelChange)="onChangeText()"
+  ></ion-input>
+  <ion-button color="danger" (click)="delete()">Delete</ion-button>
+</div>

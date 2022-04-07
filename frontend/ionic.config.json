@@ -1,0 +1,7 @@
+{
+  "name": "pugu",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

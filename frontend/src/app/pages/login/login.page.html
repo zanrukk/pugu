@@ -1,0 +1,28 @@
+<div class="content">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h1 class="title">Pugu</h1>
+    <div>
+      <h5>Username or Mail</h5>
+      <input formControlName="usernameOrMail" />
+    </div>
+    <div>
+      <h5>Password</h5>
+      <input type="password" formControlName="password" />
+    </div>
+    <div class="b-r-wrapper" [ngStyle]="{ display: displayValue }">
+      <ngx-recaptcha2
+        #captchaElem
+        [siteKey]="siteKey"
+        formControlName="recaptcha"
+      >
+      </ngx-recaptcha2>
+      <button class="button" type="submit">Sign In</button>
+    </div>
+    <ion-spinner
+      style="color: white; margin-top: 0.5rem"
+      *ngIf="isLoading"
+    ></ion-spinner>
+    <p (click)="onClickForgot()">Forgot password?</p>
+    <p (click)="onClickSignUp()">Do not you have an account? Sign up!</p>
+  </form>
+</div>

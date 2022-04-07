@@ -1,0 +1,50 @@
+<ion-content>
+  <div class="content" [ngStyle]="{ 'background-color': color }">
+    <ion-spinner class="spinner" *ngIf="isLoading"></ion-spinner>
+    <div class="content-2" *ngIf="!isLoading">
+      <div class="buttons">
+        <ion-icon
+          name="trash-outline"
+          style="width: 1.7rem; height: 1.7rem; margin-right: 0.5rem"
+          (click)="onClickDelete()"
+        ></ion-icon>
+        <ion-icon
+          name="pencil-outline"
+          style="width: 1.7rem; height: 1.7rem"
+          (click)="onClickEdit()"
+        ></ion-icon>
+      </div>
+      <p class="title">
+        {{ todo.title }}
+      </p>
+      <div class="bar">
+        <p *ngIf="progressValue === 0">{{ progressValue + "%" }}</p>
+        <div class="progress" [ngStyle]="{ width: progressValue + '%' }">
+          <p *ngIf="progressValue > 0">{{ progressValue + "%" }}</p>
+        </div>
+      </div>
+      <p class="contentValue">
+        {{ todo.description }}
+      </p>
+      <p style="margin-left: 0.5rem">
+        {{ "Deadline: " + endTime }}
+      </p>
+      <div class="checkbox-wrapper-two">
+        <div *ngFor="let checkbox of checkBoxList">
+          <div class="checkbox-wrapper">
+            <ion-checkbox
+              color="light"
+              style="--colorr:{{ color }}"
+              class="checkbox"
+              (ngModelChange)="onClickCheckBox(checkbox)"
+              [(ngModel)]="checkbox.value"
+            ></ion-checkbox>
+            <div class="label">
+              {{ checkbox.content }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

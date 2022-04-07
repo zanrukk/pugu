@@ -1,0 +1,31 @@
+@import "/src/styles/mixins";
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10rem;
+  background-color: #ff7e2d;
+  width: 100%;
+  height: 100%;
+  font-family: "Poppins";
+  @include screen("md") {
+    padding-top: 6rem;
+  }
+}
+
+.num-boxes {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.button {
+  margin-top: 0.5rem;
+  width: 8rem;
+  height: 2.5rem;
+  background-color: white;
+  color: #ff7e2d;
+  font-size: 1.2rem;
+  border-radius: 0.2rem;
+}

@@ -1,0 +1,236 @@
+<ion-content>
+  <div *ngIf="isLoading" style="display: flex; flex-direction: column">
+    <ion-spinner
+      style="
+        align-self: center;
+        margin-bottom: 1rem;
+        color: #ff7e2d;
+        width: 3rem;
+        height: 3rem;
+      "
+    ></ion-spinner>
+  </div>
+  <div class="form" [ngStyle]="{ display: displayValue }">
+    <input class="title" placeholder="Title" [(ngModel)]="title" />
+    <span
+      #description
+      class="description"
+      placeholder="Description (max 512 characters)"
+      role="textbox"
+      contenteditable
+    ></span>
+    <div>
+      <div *ngFor="let checkbox of checkBoxListOld">
+        <div class="checkbox-wrapper">
+          <ion-checkbox
+            color="dark"
+            class="checkbox-old"
+            [(ngModel)]="checkbox.value"
+          ></ion-checkbox>
+          <ion-input
+            class="old-checkbox-input"
+            [(ngModel)]="checkbox.content"
+          ></ion-input>
+          <ion-button
+            color="danger"
+            class="old-checkbox-button"
+            (click)="deleteOldCheckBox(checkbox.index)"
+            >Delete</ion-button
+          >
+        </div>
+      </div>
+      <div #checkList class="checkList"></div>
+    </div>
+    <div class="button-wrapper">
+      <ion-button color="primary" (click)="addCheckBox()" class="button"
+        >Add Checkbox</ion-button
+      >
+    </div>
+    <br />
+    <form [formGroup]="form" class="form-2">
+      <h5
+        class="info"
+        *ngIf="checkBoxListOld.length + checkBoxList.length === 0"
+      >
+        Progress
+      </h5>
+      <mat-slider
+        *ngIf="checkBoxListOld.length + checkBoxList.length === 0"
+        class="mat-slider"
+        formControlName="progress"
+        thumbLabel
+        tickInterval="20"
+        step="5"
+        min="0"
+        max="100"
+        aria-label="units"
+      ></mat-slider>
+      <mat-form-field appearance="fill" style="align-self: center">
+        <mat-label class="mat-label">Start Date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          form
+          formControlName="startTime"
+          class="mat-label"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div class="hour-minute-wrapper">
+        <mat-form-field
+          appearance="fill"
+          style="width: 6rem; margin-right: 2rem"
+        >
+          <mat-label class="mat-label">Start Hour</mat-label>
+          <mat-select formControlName="startHour" class="mat-label">
+            <mat-option
+              *ngFor="let hour of hours"
+              [value]="hour"
+              class="mat-label"
+            >
+              {{ hour }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 7rem">
+          <mat-label class="mat-label">Start Minute</mat-label>
+          <mat-select formControlName="startMinute" class="mat-label">
+            <mat-option
+              *ngFor="let min of minutes"
+              [value]="min"
+              class="mat-label"
+            >
+              {{ min }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="fill" style="align-self: center">
+        <mat-label class="mat-label">End Time</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker2"
+          form
+          formControlName="endTime"
+          class="mat-label"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+      <div class="hour-minute-wrapper">
+        <mat-form-field
+          appearance="fill"
+          style="width: 6rem; margin-right: 2rem"
+        >
+          <mat-label class="mat-label">End Hour</mat-label>
+          <mat-select formControlName="endHour" class="mat-label">
+            <mat-option
+              *ngFor="let hour of hours"
+              [value]="hour"
+              class="mat-label"
+            >
+              {{ hour }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 7rem">
+          <mat-label class="mat-label">End Minute</mat-label>
+          <mat-select formControlName="endMinute" class="mat-label">
+            <mat-option
+              *ngFor="let min of minutes"
+              [value]="min"
+              class="mat-label"
+            >
+              {{ min }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="estimated-wrapper">
+        <p>Estimated Time:</p>
+        <input
+          type="number"
+          min="0"
+          formControlName="estimatedTime"
+          class="estimated"
+        />
+        <p>Day/s</p>
+      </div>
+      <div class="hour-minute-wrapper">
+        <mat-form-field
+          appearance="fill"
+          style="width: 8rem; margin-right: 2rem"
+        >
+          <mat-label class="mat-label">Estimated Hour</mat-label>
+          <mat-select formControlName="estimatedHour" class="mat-label">
+            <mat-option
+              *ngFor="let hour of hours"
+              [value]="hour"
+              class="mat-label"
+            >
+              {{ hour }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 9rem">
+          <mat-label class="mat-label">Estimated Minute</mat-label>
+          <mat-select formControlName="estimatedMinute" class="mat-label">
+            <mat-option
+              *ngFor="let min of minutes"
+              [value]="min"
+              class="mat-label"
+            >
+              {{ min }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <h5 class="info">What is priority of this work? Score from 1 to 5.</h5>
+      <mat-slider
+        class="mat-slider"
+        formControlName="priority"
+        thumbLabel
+        tickInterval="1"
+        step="1"
+        min="1"
+        max="5"
+        aria-label="units"
+      ></mat-slider>
+      <h5 class="info">Can you rate your desire to do this work?</h5>
+      <mat-slider
+        class="mat-slider"
+        formControlName="desireToDo"
+        thumbLabel
+        tickInterval="1"
+        step="1"
+        min="1"
+        max="5"
+        aria-label="units"
+      ></mat-slider>
+      <h5 class="info">Can you evaluate your willingness to avoid this job?</h5>
+      <mat-slider
+        class="mat-slider"
+        formControlName="avodiance"
+        thumbLabel
+        tickInterval="1"
+        step="1"
+        min="1"
+        max="5"
+        aria-label="units"
+      ></mat-slider>
+    </form>
+    <div class="button-wrapper">
+      <ion-button
+        style="margin-bottom: 1rem"
+        color="primary"
+        (click)="onSubmit()"
+        class="button"
+        >Submit</ion-button
+      >
+    </div>
+  </div>
+</ion-content>

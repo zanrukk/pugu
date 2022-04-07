@@ -1,0 +1,48 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.spinner {
+  color: #ff7e2d;
+  width: 3rem;
+  height: 3rem;
+  margin-top: 1rem;
+  align-self: center;
+}
+
+.box-wrapper {
+  width: 100%;
+  position: relative;
+}
+.box {
+  position: absolute;
+  width: var(--width);
+  height: var(--height);
+  top: var(--y);
+  left: var(--x);
+  background-color: var(--color);
+  color: white;
+  font-family: "Poppins";
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  border: 1px solid white;
+}
+.box-progress {
+  margin-right: 0.2rem;
+}
+.box-title {
+  overflow: hidden;
+  width: var(--width);
+  display: -webkit-box;
+  -webkit-line-clamp: var(--line);
+  -webkit-box-orient: vertical;
+  text-align: center;
+}
+
+.exp {
+  align-self: center;
+  font-family: "Poppins";
+}

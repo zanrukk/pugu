@@ -1,0 +1,124 @@
+<ion-content>
+  <div
+    *ngIf="isLoadingInitial"
+    style="display: flex; width: 100%; justify-content: center"
+  >
+    <ion-spinner
+      style="color: #ff7e2d; margin-top: 1rem; width: 2rem; height: 2rem"
+    >
+    </ion-spinner>
+  </div>
+
+  <div [ngStyle]="{ display: displayValue }">
+    <form
+      [formGroup]="profileForm"
+      (ngSubmit)="onClickUpdateProfile()"
+      class="form"
+    >
+      <h5 class="title-info">Update Profile</h5>
+      <h5 class="email-info">
+        {{ email }}
+      </h5>
+      <div class="email-warning">You cannot change your email address!</div>
+      <div class="age">
+        <p>Username:</p>
+        <input
+          formControlName="username"
+          class="age-input"
+          style="width: 12rem; text-align: start"
+          (change)="onChange(0)"
+        />
+      </div>
+      <div class="age">
+        <p>Age:</p>
+        <input
+          type="number"
+          min="1"
+          max="120"
+          formControlName="age"
+          class="age-input"
+          (change)="onChange(1)"
+        />
+      </div>
+      <p class="error" *ngIf="errorForAge">{{ errorMessageForAge }}</p>
+      <br />
+      <h5 class="info">Are you a distracted person? Score from 1 to 5.</h5>
+      <mat-slider
+        class="mat-slider"
+        formControlName="distractibility"
+        thumbLabel
+        tickInterval="1"
+        step="1"
+        min="1"
+        max="5"
+        aria-label="units"
+      ></mat-slider>
+      <br />
+      <h5 class="info">Are you an impulsive person? Score from 1 to 5.</h5>
+      <mat-slider
+        class="mat-slider"
+        formControlName="impulsiveness"
+        thumbLabel
+        tickInterval="1"
+        step="1"
+        min="1"
+        max="5"
+        aria-label="units"
+      ></mat-slider>
+      <br />
+      <h5 class="info">
+        Do you think you have a lack of self-control? Score from 1 to 5.
+      </h5>
+      <mat-slider
+        class="mat-slider"
+        formControlName="lackOfSelfControl"
+        thumbLabel
+        tickInterval="1"
+        step="1"
+        min="1"
+        max="5"
+        aria-label="units"
+      ></mat-slider>
+      <div *ngIf="!isLoadingUpdateProfile">
+        <button class="button" type="submit">Update Profile</button>
+      </div>
+      <ion-spinner
+        style="color: #3376f3; margin-bottom: 3rem; margin-top: 1rem"
+        *ngIf="isLoadingUpdateProfile"
+      ></ion-spinner>
+    </form>
+    <form
+      [formGroup]="passwordForm"
+      (ngSubmit)="onClickChangePassword()"
+      class="form"
+    >
+      <div style="margin-bottom: 1rem">
+        <div class="change-font">Password</div>
+        <input
+          type="password"
+          formControlName="password"
+          class="password-input"
+          style="width: 12rem; text-align: start"
+        />
+      </div>
+      <div style="margin-bottom: 2rem">
+        <div class="change-font">Password Repeat</div>
+        <input
+          type="password"
+          formControlName="passwordRepeat"
+          class="password-input"
+          style="width: 12rem; text-align: start"
+        />
+      </div>
+      <div *ngIf="!isLoadingChangePassword">
+        <button class="button" type="submit" style="background-color: #33f35d">
+          Change Password
+        </button>
+      </div>
+      <ion-spinner
+        style="color: #33f35d; margin-bottom: 3rem; margin-top: 1rem"
+        *ngIf="isLoadingChangePassword"
+      ></ion-spinner>
+    </form>
+  </div>
+</ion-content>

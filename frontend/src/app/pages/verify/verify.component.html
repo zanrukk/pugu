@@ -1,0 +1,30 @@
+<div class="content">
+  <h1 style="color: white">{{ "Enter " + pageTitle + " Code" }}</h1>
+  <div class="num-boxes" #numBoxes>
+    <div *ngFor="let a of fakeArray; let index = index">
+      <app-num-box
+        [index]="index"
+        [currentBox]="currentBox"
+        [valueFromParent]="valueArray[index]"
+        (changeNumber)="onChangeNumber($event)"
+        (focusAnyBox)="onChangeBox($event)"
+        (pasteHandler)="onPasteContent($event)"
+        [errorValue]="error"
+      ></app-num-box>
+    </div>
+  </div>
+  <div *ngIf="error" style="color: white">Verification code is wrong!</div>
+  <form [formGroup]="form" style="margin-top: 1rem">
+    <ngx-recaptcha2
+      #captchaElem
+      [siteKey]="siteKey"
+      formControlName="recaptcha"
+    >
+    </ngx-recaptcha2>
+  </form>
+  <button (click)="onSendCode()" class="button" *ngIf="!isLoading">Send</button>
+  <ion-spinner
+    style="margin-top: 1rem; color: white"
+    *ngIf="isLoading"
+  ></ion-spinner>
+</div>

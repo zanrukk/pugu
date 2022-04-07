@@ -1,0 +1,42 @@
+<ion-content>
+  <div class="content">
+    <ion-spinner class="spinner" *ngIf="isLoading"></ion-spinner>
+    <p *ngIf="!isLoading && todos.length === 0" class="exp">
+      You have nothing to do, get some rest!
+    </p>
+    <div *ngIf="!isLoading && todos.length !== 0" class="box-wrapper">
+      <div *ngFor="let todo of todos">
+        <div
+          class="box"
+          (click)="onClickBox(todo)"
+          style="--x: {{ todo.positionX }}px;--y:{{
+            todo.positionY
+          }}px;--width:{{ todo.width }}px;--height:{{
+            todo.height
+          }}px;--color:{{ todo.color }}"
+        >
+          <div
+            class="box-progress"
+            *ngIf="todo.width >= 30 && todo.height >= 30"
+          >
+            {{ "%" + todo.progress }}
+          </div>
+          <p
+            *ngIf="todo.width >= 150 && todo.height >= 90 && todo.height < 200"
+            class="box-title"
+            style="--width:{{ todo.width - todo.width / 20 }}px;--line:1"
+          >
+            {{ todo.title }}
+          </p>
+          <p
+            *ngIf="todo.width >= 150 && todo.height >= 200"
+            class="box-title"
+            style="--width:{{ todo.width - todo.width / 20 }}px;--line:3"
+          >
+            {{ todo.title }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,15 @@
+@import "/src/styles/mixins";
+.div {
+  display: flex;
+  align-self: flex-start;
+  width: 100%;
+  margin: 0.5rem 0rem 0.5rem 0rem;
+}
+.input {
+  height: 2rem;
+  font-family: "Poppins";
+}
+ion-button {
+  height: 1.5rem;
+  font-family: "Poppins";
+}

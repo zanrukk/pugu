@@ -1,0 +1,29 @@
+<ion-content>
+  <div class="wrapper">
+    <div class="content">
+      <ion-spinner class="spinner" *ngIf="isLoading"></ion-spinner>
+      <p *ngIf="!isLoading && todos.length === 0" class="exp">
+        There is no outdated todos!
+      </p>
+      <div *ngIf="!isLoading && todos.length !== 0" class="box-wrapper">
+        <div *ngFor="let todo of todos">
+          <div class="box">
+            <p class="title-stil">
+              {{ todo.title }}
+            </p>
+            <ion-icon
+              name="trash-outline"
+              style="
+                width: 1.7rem;
+                height: 1.7rem;
+                margin-right: 0.5rem;
+                color: white;
+              "
+              (click)="onClickDelete(todo.id)"
+            ></ion-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

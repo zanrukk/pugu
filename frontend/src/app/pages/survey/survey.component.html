@@ -1,0 +1,66 @@
+<ion-content>
+  <form [formGroup]="surveyForm" (ngSubmit)="onSubmit()" class="form">
+    <h5 class="info">
+      In order to provide a customized experience for you, we need some
+      information from you. You can change them at any time from the 'Update
+      Profile' tab.
+    </h5>
+    <div class="age">
+      <p>Please enter your age:</p>
+      <input
+        type="number"
+        min="1"
+        max="120"
+        formControlName="age"
+        class="age-input"
+        (change)="onChange()"
+      />
+    </div>
+    <p class="error" *ngIf="error">{{ errorMessage }}</p>
+    <br />
+    <h5 class="info">Are you a distracted person? Score from 1 to 5.</h5>
+    <mat-slider
+      class="mat-slider"
+      formControlName="distractibility"
+      thumbLabel
+      tickInterval="1"
+      step="1"
+      min="1"
+      max="5"
+      aria-label="units"
+    ></mat-slider>
+    <br />
+    <h5 class="info">Are you an impulsive person? Score from 1 to 5.</h5>
+    <mat-slider
+      class="mat-slider"
+      formControlName="impulsiveness"
+      thumbLabel
+      tickInterval="1"
+      step="1"
+      min="1"
+      max="5"
+      aria-label="units"
+    ></mat-slider>
+    <br />
+    <h5 class="info">
+      Do you think you have a lack of self-control? Score from 1 to 5.
+    </h5>
+    <mat-slider
+      class="mat-slider"
+      formControlName="lackOfSelfControl"
+      thumbLabel
+      tickInterval="1"
+      step="1"
+      min="1"
+      max="5"
+      aria-label="units"
+    ></mat-slider>
+    <div *ngIf="!isLoading">
+      <button class="button" type="submit">Continue</button>
+    </div>
+    <ion-spinner
+      style="color: #ff4081; margin-bottom: 3rem; margin-top: 1rem"
+      *ngIf="isLoading"
+    ></ion-spinner>
+  </form>
+</ion-content>

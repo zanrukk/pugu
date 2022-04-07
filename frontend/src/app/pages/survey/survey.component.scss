@@ -1,0 +1,52 @@
+.form {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h5 {
+  font-family: "Poppins";
+}
+.info {
+  width: 90%;
+}
+.mat-slider {
+  width: 70%;
+}
+.age {
+  display: flex;
+  height: 3rem;
+}
+p {
+  font-family: "Poppins";
+  font-size: 1.2rem;
+}
+.error {
+  font-size: 0.8rem;
+  color: #e02e2e;
+}
+.age-input {
+  margin-left: 0.1rem;
+  height: 2rem;
+  align-self: flex-end;
+  border: 0px solid black;
+  border-bottom: 0.2rem solid #ff4081;
+  line-height: 1.5rem;
+  font-size: 1.5rem;
+  width: 4rem;
+  font-family: "Poppins";
+  text-align: center;
+}
+input:focus {
+  outline: none;
+}
+.button {
+  font-size: 1.5rem;
+  font-family: "Poppins";
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  margin-bottom: 3rem;
+  margin-top: 1rem;
+  color: white;
+  background-color: #ff4081;
+}

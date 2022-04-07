@@ -1,0 +1,53 @@
+<ion-menu side="start" contentId="main">
+  <ion-header style="height: 55px">
+    <ion-toolbar color="#ec9259" class="menuToolbar">
+      <ion-title class="title">{{"Welcome "+username+"!"}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item (click)="onClickNavigate('/app')" class="ion-item" lines="none"
+        >To Do List</ion-item
+      >
+      <ion-item
+        (click)="onClickNavigate('/app/create-to-do')"
+        class="ion-item"
+        lines="none"
+        >Create To Do</ion-item
+      >
+      <ion-item
+        (click)="onClickNavigate('/app/works-done')"
+        class="ion-item"
+        lines="none"
+        >Works Done</ion-item
+      >
+      <ion-item
+        (click)="onClickNavigate('/app/outdated-todos')"
+        class="ion-item"
+        lines="none"
+        >Outdated Works</ion-item
+      >
+      <ion-item
+        (click)="onClickNavigate('/app/update-profile')"
+        class="ion-item"
+        lines="none"
+        >Update Profile</ion-item
+      >
+      <ion-item (click)="onClickLogout()" class="logout" lines="none"
+        >Logout</ion-item
+      >
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-header style="height: 55px">
+  <ion-toolbar color="#ff7e2d" class="pageToolbar">
+    <ion-menu-button
+      slot="start"
+      mode="md"
+      style="color: white"
+    ></ion-menu-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-content>

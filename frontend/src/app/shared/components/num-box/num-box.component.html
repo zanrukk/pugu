@@ -1,0 +1,11 @@
+<ion-input
+  class="num-box ion-no-padding"
+  style="--bordercolor: {{ borderColor }}"
+  maxlength="1"
+  #autofocus
+  [(ngModel)]="value"
+  (paste)="onPasteContent($event)"
+  (keypress)="onPressKey($event)"
+  (keyup)="onValueChanged($event)"
+  (ionFocus)="onFocusBox()"
+></ion-input>
