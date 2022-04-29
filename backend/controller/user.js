@@ -806,7 +806,7 @@ exports.GetToDo = async (req, res, next) => {
       if (workTime >= 525949) workTime = 525949;
       let f = workTime * ((100 - todo.progress) / 100);
       f = f / remainingTime;
-      f = Math.log10(f);
+      f = Math.log2(f);
       if (f < -1) f = -1;
       else if (f > 1) f = 1;
       f += 1;
