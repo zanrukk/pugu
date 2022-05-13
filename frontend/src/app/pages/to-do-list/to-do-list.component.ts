@@ -75,6 +75,11 @@ export class ToDoListComponent implements OnInit, OnDestroy {
   }
 
   pickColor(point) {
+    if (point >= 70 && point < 80) {
+      point = point + 10;
+    } else if (point >= 80) {
+      point = 100;
+    }
     if (point > 50) {
       let green = 100 - point;
       green = (green * 255) / 50;
