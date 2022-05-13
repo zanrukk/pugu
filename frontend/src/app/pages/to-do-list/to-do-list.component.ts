@@ -37,17 +37,6 @@ export class ToDoListComponent implements OnInit, OnDestroy {
         .subscribe((response: { todos: any[] }) => {
           this.todos = response.todos;
           this.todos = this.todos.map((todo) => {
-            console.log(
-              todo.title +
-                ': f=' +
-                todo.f +
-                ' g=' +
-                todo.g +
-                ' o=' +
-                todo.o +
-                ' totalPoint=' +
-                todo.totalPoint
-            );
             return {
               ...todo,
               color: this.pickColor(Math.floor(todo.totalPoint)),
