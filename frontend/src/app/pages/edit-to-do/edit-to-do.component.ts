@@ -285,6 +285,12 @@ export class EditToDoComponent implements OnInit, OnDestroy {
     try {
       const sT: Date = new Date(this.form.get('startTime').value);
       const eT: Date = new Date(this.form.get('endTime').value);
+      let priority = this.form.get('priority').value;
+      if (priority > 1) priority = priority * 2;
+      let dtd = this.form.get('desireToDo').value;
+      if (dtd > 1) dtd = dtd * 2;
+      let avod = this.form.get('avodiance').value;
+      if (avod > 1) avod = avod * 2;
       const response = await this.userService.editToDo(
         this.todoId,
         this.title,
@@ -293,9 +299,9 @@ export class EditToDoComponent implements OnInit, OnDestroy {
         sT.toString(),
         eT.toString(),
         this.form.get('estimatedTime').value,
-        this.form.get('priority').value * 2,
-        this.form.get('desireToDo').value * 2,
-        this.form.get('avodiance').value * 2,
+        priority,
+        dtd,
+        avod,
         this.form.get('progress').value,
         this.form.get('startHour').value,
         this.form.get('startMinute').value,

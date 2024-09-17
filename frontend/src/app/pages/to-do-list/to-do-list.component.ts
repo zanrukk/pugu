@@ -37,17 +37,6 @@ export class ToDoListComponent implements OnInit, OnDestroy {
         .subscribe((response: { todos: any[] }) => {
           this.todos = response.todos;
           this.todos = this.todos.map((todo) => {
-            console.log(
-              todo.title +
-                ': f=' +
-                todo.f +
-                ' g=' +
-                todo.g +
-                ' o=' +
-                todo.o +
-                ' totalPoint=' +
-                todo.totalPoint
-            );
             return {
               ...todo,
               color: this.pickColor(Math.floor(todo.totalPoint)),
@@ -75,6 +64,11 @@ export class ToDoListComponent implements OnInit, OnDestroy {
   }
 
   pickColor(point) {
+    if (point >= 70 && point < 80) {
+      point = point + 10;
+    } else if (point >= 80) {
+      point = 100;
+    }
     if (point > 50) {
       let green = 100 - point;
       green = (green * 255) / 50;
